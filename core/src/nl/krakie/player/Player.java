@@ -1,6 +1,7 @@
 package nl.krakie.player;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 
 public class Player {
 
@@ -42,7 +43,7 @@ public class Player {
     }
     public void move(float dTime){
 
-        if (jumping) {
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)||Gdx.input.isKeyPressed(Input.Keys.W)) {
             if(grounded) {
                 System.out.println("Jumping now");
                 y++;
@@ -53,14 +54,10 @@ public class Player {
             jumping = false;
         }
 
-        if (Gdx.input.isTouched()){
+        
 
-            System.out.println("Touch registered");
-
-            int touchX = Gdx.input.getX();
-
-            if (touchX > (Gdx.graphics.getWidth()/2)){
-                System.out.println("Touch on the right registered");
+            if (Gdx.input.isKeyPressed(Input.Keys.D)){
+                
                 if (hspeed<0){
                     hspeed =  ( hspeed + (decel*dTime));
                 }
@@ -68,8 +65,8 @@ public class Player {
                     hspeed =  ( hspeed + (accel*dTime));
                 }
             }
-            else {
-                System.out.println("Touch on the left registered");
+            else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                
                 if (hspeed>0){
                     hspeed =  (hspeed - (decel*dTime));
                 }
@@ -78,23 +75,46 @@ public class Player {
                 }
             }
 
-        }
-        else {
+        
+            else if ((Gdx.input.isKeyPressed(Input.Keys.D))&&(Gdx.input.isKeyPressed(Input.Keys.A))) {
 
-            if (hspeed > 0){
-                hspeed = hspeed - (decel*dTime);
-                if (hspeed<0){
-                    hspeed=0;
-                }
-            }
-            else if (hspeed < 0){
+                if (hspeed > 0){
+                    hspeed = hspeed - (decel*dTime);
+                    
+                    if (hspeed<0){
+                        hspeed=0;
+                    }
+                 }
+                
+                else if (hspeed < 0){
                 hspeed = hspeed + (decel*dTime);
-                if (hspeed>0){
-                    hspeed=0;
+                
+                    if (hspeed>0){
+                        hspeed=0;
                 }
             }
-
         }
+            
+            else {
+                
+              if (hspeed > 0){
+                    hspeed = hspeed - (decel*dTime);
+                    
+                    if (hspeed<0){
+                        hspeed=0;
+                    }
+                 }
+                
+                else if (hspeed < 0){
+                hspeed = hspeed + (decel*dTime);
+                
+                    if (hspeed>0){
+                        hspeed=0;
+                }
+            }  
+            }
+
+        
 
         if (hspeed > maxHSpeed){
             hspeed = maxHSpeed;
@@ -132,7 +152,5 @@ public class Player {
         gravity(dTime);
         }
 
-    public static void handleJump(){
-        jumping = true;
-    }
+    
 }
