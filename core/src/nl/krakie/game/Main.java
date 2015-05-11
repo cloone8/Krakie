@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import nl.krakie.player.Player;
 
@@ -17,7 +19,8 @@ public class Main extends ApplicationAdapter {
 	Texture testPlayer;
     public static Player player;
     public OrthographicCamera camera;
-    
+    TiledMapRenderer tiledMapRenderer;
+    LevelLoader levelLoader;
 
 
 
@@ -38,18 +41,25 @@ public class Main extends ApplicationAdapter {
         loadSounds();
 
     }
+        public void nextLevel(){
+            levelLoader.nextLevel();
+            tiledMapRenderer = new OrthogonalTiledMapRenderer(levelLoader.tiledMap);
+        }
 
 	@Override
 	public void create() {
 
 
-		loadAssets();
+        loadAssets();
         System.out.println("Game started");
+        
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800,480);
-
-
+        
+        levelLoader = new LevelLoader();
        
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(levelLoader.tiledMap);
+        
         player = new Player();
 	}
 
@@ -57,7 +67,10 @@ public class Main extends ApplicationAdapter {
 
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        
+        tiledMapRenderer.setView(camera);
+        tiledMapRenderer.render();
+        
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(testPlayer, player.x, player.y);
