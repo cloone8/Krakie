@@ -44,6 +44,8 @@ public class Main extends ApplicationAdapter {
         public void nextLevel(){
             levelLoader.nextLevel();
             tiledMapRenderer = new OrthogonalTiledMapRenderer(levelLoader.tiledMap);
+            player.x = 32; 
+            player.y = 0;
         }
 
 	@Override

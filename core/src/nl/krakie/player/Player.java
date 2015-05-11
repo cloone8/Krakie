@@ -29,7 +29,7 @@ public class Player {
         healthMax = 100;
         healthCurrent = 100;
         currentLevel = 0;
-        x = 400-32; //Starts the player in de middle of the screen instead of slightly to the right
+        x = 32; //Starts the player in de middle of the screen instead of slightly to the right
         y = 0;
         hspeed = 0;
         vspeed = 0;
