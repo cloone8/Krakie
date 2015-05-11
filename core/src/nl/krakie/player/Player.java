@@ -54,29 +54,7 @@ public class Player {
             jumping = false;
         }
 
-        
-
-            if (Gdx.input.isKeyPressed(Input.Keys.D)){
-                
-                if (hspeed<0){
-                    hspeed =  ( hspeed + (decel*dTime));
-                }
-                else {
-                    hspeed =  ( hspeed + (accel*dTime));
-                }
-            }
-            else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-                
-                if (hspeed>0){
-                    hspeed =  (hspeed - (decel*dTime));
-                }
-                else {
-                    hspeed =  (hspeed - (accel*dTime));
-                }
-            }
-
-        
-            else if ((Gdx.input.isKeyPressed(Input.Keys.D))&&(Gdx.input.isKeyPressed(Input.Keys.A))) {
+        if ((Gdx.input.isKeyPressed(Input.Keys.D))&&(Gdx.input.isKeyPressed(Input.Keys.A))) {
 
                 if (hspeed > 0){
                     hspeed = hspeed - (decel*dTime);
@@ -94,6 +72,29 @@ public class Player {
                 }
             }
         }
+
+        else if (Gdx.input.isKeyPressed(Input.Keys.D)){
+                
+                if (hspeed<0){
+                    hspeed =  ( hspeed + (decel*dTime));
+                }
+                else {
+                    hspeed =  ( hspeed + (accel*dTime));
+                }
+            }
+        
+        else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                
+                if (hspeed>0){
+                    hspeed =  (hspeed - (decel*dTime));
+                }
+                else {
+                    hspeed =  (hspeed - (accel*dTime));
+                }
+            }
+
+        
+            
             
             else {
                 

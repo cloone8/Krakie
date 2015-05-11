@@ -78,13 +78,13 @@ public class Main extends ApplicationAdapter {
         updatePlayer();
     }
 
-	@Override
-	public void render() {
+    @Override
+    public void render() {
 
         updateGameLogic();
 
         updateGraphics();
 
         updateSound();
-	}
+    }
 }
